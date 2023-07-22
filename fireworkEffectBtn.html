@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>불꽃놀이 이펙트 버튼</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        #firework-button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .firework {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="firework-button">불꽃놀이 시작!</button>
+
+    <script>
+        document.getElementById('firework-button').addEventListener('click', function() {
+            for (let i = 0; i < 50; i++) {
+                createFirework();
+            }
+        });
+
+        function createFirework() {
+            const firework = document.createElement('div');
+            firework.classList.add('firework');
+            document.body.appendChild(firework);
+
+            const randomX = Math.random() * window.innerWidth;
+            const randomY = Math.random() * window.innerHeight;
+            const randomDuration = Math.random() * 2 + 1;
+
+            firework.style.left = randomX + 'px';
+            firework.style.top = randomY + 'px';
+            firework.style.animationDuration = randomDuration + 's';
+
+            firework.addEventListener('animationend', function() {
+                firework.remove();
+            });
+        }
+    </script>
+</body>
+</html>
